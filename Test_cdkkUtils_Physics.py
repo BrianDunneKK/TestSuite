@@ -129,7 +129,6 @@ class TestPhysicsApp(PyGameApp):
         self.background_fill = "burlywood"
         self._ball = Manager_Tests(self.boundary)
         self.add_sprite_mgr(self._ball)
-        self.event_mgr.keyboard_event(pygame.K_q, "Quit")
         key_map = { pygame.K_q : "Quit" }
         user_event_map = { EVENT_GAME_TIMER_1 : "NextTest" }
         self.event_mgr.event_map(key_event_map=key_map, user_event_map=user_event_map)
