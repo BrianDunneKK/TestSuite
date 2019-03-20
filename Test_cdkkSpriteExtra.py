@@ -27,11 +27,11 @@ class Manager_TestSprite(SpriteManager):
         self._board3 = Sprite_BoardGame_Board(name="Board3", style={"fillcolour":None, "altcolour":None, "fillimage":"board.png", "outlinecolour":None})
         self._board3.setup_grid(cell_size, 8)
         self._board3.rect.topleft = (800,50)
-        self.add(self._board3)
+        self.add(self._board3, layer=9)
 
         self._piece1 = Sprite_BoardGame_Piece("Piece1", self._board3, style={"fillcolour":"red4"})
         self.add(self._piece1)
-        self._piece2 = Sprite_BoardGame_Piece("Piece2", self._board3, col=3, style={"fillcolour":"yellow2", "piecemargin":10})
+        self._piece2 = Sprite_BoardGame_Piece("Piece2", self._board3, col=3, style={"fillcolour":"yellow2", "piecemargin":0})
         self.add(self._piece2)
 
     def event(self, e):
@@ -54,6 +54,9 @@ class Manager_TestSprite(SpriteManager):
                     self._highlight_on = not self._highlight_on
                 self._highlight = (self._highlight + 1) % 8
                 dealt_with = True
+            elif e.action == "Move":
+                self._piece2.rect.move_physics(20, 20)
+                dealt_with = True
         return dealt_with
         
 
@@ -67,6 +70,7 @@ class TestPyGameApp(PyGameApp):
         self.add_sprite_mgr(Manager_TestSprite())
         self.event_mgr.keyboard_event(pygame.K_q, "Quit")
         self.event_mgr.keyboard_event(pygame.K_h, "Highlight")
+        self.event_mgr.keyboard_event(pygame.K_m, "Move")
 
 ### --------------------------------------------------
 
