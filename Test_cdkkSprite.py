@@ -33,13 +33,13 @@ class Manager_TestSprite(SpriteManager):
         self.add(tb_default)
         
         tb_style = {"textcolour":"blue", "fillcolour":None, "outlinecolour":"blue"}
-        tb_style1 = Sprite_TextBox("TextBox: Style 1", cdkkRect(320, 150, 300, 60), style=tb_style)
+        tb_style1 = Sprite_TextBox("Blue/None/Blue", cdkkRect(320, 150, 300, 60), style=tb_style)
         self.add(tb_style1)
 
         tb_style["fillcolour"] = "yellow1"
         tb_style["textsize"] = 20
         tb_style["shape"] = "Ellipse"
-        tb_style2 = Sprite_TextBox("TextBox: Style 2", cdkkRect(640, 150, 300, 60), style=tb_style)
+        tb_style2 = Sprite_TextBox("Yellow/None/Blue, El, 20", cdkkRect(640, 150, 300, 60), style=tb_style)
         self.add(tb_style2)
 
         tb_topleft = Sprite_TextBox("TextBox: Top Left", cdkkRect(10, 220, 300, 60), style={"align_horiz":"L", "align_vert":"T"})
