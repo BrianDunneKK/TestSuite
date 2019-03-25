@@ -39,7 +39,7 @@ class Manager_TestSprite(SpriteManager):
         tb_style["fillcolour"] = "yellow1"
         tb_style["textsize"] = 20
         tb_style["shape"] = "Ellipse"
-        tb_style2 = Sprite_TextBox("Yellow/None/Blue, El, 20", cdkkRect(640, 150, 300, 60), style=tb_style)
+        tb_style2 = Sprite_TextBox("Blue/Yellow/Blue, O, 20", cdkkRect(640, 150, 300, 60), style=tb_style)
         self.add(tb_style2)
 
         tb_topleft = Sprite_TextBox("TextBox: Top Left", cdkkRect(10, 220, 300, 60), style={"align_horiz":"L", "align_vert":"T"})
@@ -60,11 +60,16 @@ class Manager_TestSprite(SpriteManager):
         self.add(self._click_game_over)
         self.start_game()
 
-        self._fps = Sprite_DynamicText("FPS", cdkkRect(640, 300, 120, 40), style={"align_horiz":"L", "textformat":"FPS: {0:4.1f}"})
+        self._fps = Sprite_DynamicText("FPS", cdkkRect(640, 300, 120, 40), style={"fillcolour":None, "align_horiz":"L", "textformat":"FPS: {0:4.1f}"})
         self.add(self._fps)
-        self._fps_units = Sprite_Label("frames/sec", cdkkRect(760, 300, 0, 0))
+        self._fps_units = Sprite_Label("frames/sec", cdkkRect(770, 300, 150, 40))
         self._fps_units.rect.centery = 320
         self.add(self._fps_units)
+
+        tb_auto_size = Sprite_TextBox("AutoSize", cdkkRect(10, 400, 0, 0), auto_size=True)
+        ev_Auto_Clicked = EventManager.gc_event("AutoSize")
+        tb_auto_size.setup_mouse_events(ev_Auto_Clicked, None)
+        self.add(tb_auto_size)
 
     def event(self, e):
         dealt_with = super().event(e)
@@ -82,6 +87,12 @@ class Manager_TestSprite(SpriteManager):
                     EventManager.post_game_control("GameOver")
                 else:
                     EventManager.post_game_control("StartGame")
+                dealt_with = True
+            elif e.action == "AutoSize":
+                t = self.sprite("AutoSize").text + "+"
+                if t == "AutoSize+++++":
+                    t = "AutoSize"
+                self.sprite("AutoSize").text = t
                 dealt_with = True
             else:
                 dealt_with = False

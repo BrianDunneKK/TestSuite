@@ -31,6 +31,7 @@ class Sprite_Obstacle(Sprite_Shape):
 ### --------------------------------------------------
 
 class Manager_Tests(SpriteManager):
+
     def __init__(self, limits, name="Ball Manager"):
         super().__init__(name)
         self._limits = limits
@@ -38,7 +39,8 @@ class Manager_Tests(SpriteManager):
         self._timer = Timer()
         self._next_test = 1
         self._timer = Timer()
-        self._test_time = Sprite_DynamicText("Test+Time", rect=cdkkRect(10, 10, 300, 40), style={"fillcolour":None, "align_horiz":"L", "textformat":"Test: {0} Time Left: {1:0.1f}"})
+        tt_style={"fillcolour":None, "align_horiz":"L", "textformat":"Test: {0} Time Left: {1:0.1f}"}
+        self._test_time = Sprite_DynamicText("Test+Time", rect=cdkkRect(10, 10, 300, 40), style=tt_style)
         self._test_time.set_text(self._next_test, 0)
         self.add(self._test_time)
         EventManager.post_game_control("NextTest")
