@@ -1,5 +1,3 @@
-# To Do: Bounce_cor per limit, for x & y
-
 from cdkkPyGameApp import *
 from cdkkSpriteExtra import *
 
@@ -126,9 +124,7 @@ class Manager_Tests(SpriteManager):
 
 class TestPhysicsApp(PyGameApp):
     def init(self):
-        super().init((800, 600))
-        pygame.display.set_caption("Bouncing Ball")
-        self.background_fill = "burlywood"
+        super().init()
         self._ball = Manager_Tests(self.boundary)
         self.add_sprite_mgr(self._ball)
         key_map = { pygame.K_q : "Quit" }
@@ -137,7 +133,12 @@ class TestPhysicsApp(PyGameApp):
 
 ### --------------------------------------------------
 
-theApp = TestPhysicsApp()
+app_config = {
+    "width":800, "height":600,
+    "background_fill":"burlywood",
+    "caption":"Test Physics"
+    }
+theApp = TestPhysicsApp(app_config)
 theApp.execute()
 
 class Sprite_Ball_Old(Sprite_Shape):

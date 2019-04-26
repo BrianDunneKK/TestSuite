@@ -29,6 +29,13 @@ class Manager_TestSprite(SpriteManager):
         polygon_sprite.setup_polygon([(0,50), (50,0), (100,50), (50, 100)])
         self.add(polygon_sprite)
 
+        image_from_ss = Sprite()
+        image_from_ss._image.set_spritesheet("ExplosionCount.png", 4, 4)
+        image_from_ss._image.spritesheet_image(6)
+        image_from_ss._image_size_to_rect()
+        image_from_ss.rect.topleft = (650, 10)
+        self.add(image_from_ss)
+
         tb_default = Sprite_TextBox("TextBox: Default", cdkkRect(10, 150, 300, 60))
         self.add(tb_default)
         
@@ -123,5 +130,10 @@ class TestPyGameApp(PyGameApp):
 
 ### --------------------------------------------------
 
-theApp = TestPyGameApp()
+app_config = {
+    "width":1200, "height":800,
+    "background_fill":"burlywood",
+    "caption":"Test PyGame - Sprite"
+    }
+theApp = TestPyGameApp(app_config)
 theApp.execute()

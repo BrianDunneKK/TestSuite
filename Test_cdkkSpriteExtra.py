@@ -1,5 +1,3 @@
-# To Do: Put piece on lower later
-
 import sys
 sys.path.append("../pygame-cdkk")
 from cdkkPyGameApp import *
@@ -34,6 +32,18 @@ class Manager_TestSprite(SpriteManager):
         self._piece2 = Sprite_BoardGame_Piece("Piece2", self._board3, col=3, style={"fillcolour":"yellow2", "piecemargin":0})
         self.add(self._piece2)
 
+        self._grid1 = Sprite_Grid()
+        self._grid1.setup_grid(["ExplosionCount.png",4,4], [1,3,5,7,9,11], 32, 3, 32, 2)
+        self._grid1.rect.topleft = (50, 450)
+        self.add(self._grid1)
+
+        image_from_ss = Sprite()
+        image_from_ss._image.set_spritesheet("ExplosionCount.png", 4, 4)
+        image_from_ss._image.spritesheet_image(6)
+        image_from_ss._image_size_to_rect()
+        image_from_ss.rect.topleft = (300, 450)
+        self.add(image_from_ss)
+
     def event(self, e):
         dealt_with = super().event(e)
         if not dealt_with and e.type == EVENT_GAME_CONTROL:
@@ -64,7 +74,7 @@ class Manager_TestSprite(SpriteManager):
 
 class TestPyGameApp(PyGameApp):
     def init(self):
-        super().init((1200, 600))
+        super().init()
         pygame.display.set_caption("Test cdkkSpriteExtra")
         self.background_fill = "burlywood"
         self.add_sprite_mgr(Manager_TestSprite())
@@ -74,5 +84,10 @@ class TestPyGameApp(PyGameApp):
 
 ### --------------------------------------------------
 
-theApp = TestPyGameApp()
+app_config = {
+    "width":1200, "height":800,
+    "background_fill":"burlywood",
+    "caption":"Test PyGame - SpriteExtra"
+    }
+theApp = TestPyGameApp(app_config)
 theApp.execute()
