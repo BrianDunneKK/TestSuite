@@ -10,7 +10,7 @@ class Manager_TestSprite(SpriteManager):
         super().__init__(name)
 
         image_sprite = Sprite()
-        image_sprite.load_image("beachball.png")
+        image_sprite.load_image_from_file("beachball.png")
         image_sprite.rect.topleft = (10, 10)
         self.add(image_sprite)
 
